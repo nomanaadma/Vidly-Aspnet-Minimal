@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using Vidly.Api.Filters;
 using Vidly.Api.Mappers;
 using Vidly.Application.Repositories;
 using Vidly.Application.Services;
