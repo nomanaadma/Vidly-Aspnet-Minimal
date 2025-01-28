@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "7c4d7ea5-4abc-4642-9e69-3e663c67c449",
+		"name": "Vidly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29839721"
+	},
+	"item": [
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My Genre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/genres",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/genres",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"genres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/genres/264",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"genres",
+								"264"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My New Updated Genre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/genres/264",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"genres",
+								"264"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/genres/264",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"genres",
+								"264"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My Customer\",\r\n    \"phone\": \"03222691789\",\r\n    \"isGold\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/customers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/customers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/customers/412",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"customers",
+								"412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My Customer Updated\",\r\n    \"phone\": \"0322269178910\",\r\n    \"isGold\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/customers/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"customers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/customers/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"customers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Title\": \"My Movie\",\r\n    \"GenreId\": 261,\r\n    \"NumberInStock\": 10,\r\n    \"DailyRentalRate\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/movies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/movies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/movies/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"movies",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My Customer Updated\",\r\n    \"phone\": \"0322269178910\",\r\n    \"isGold\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/movies/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/movies/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"movies",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 3,\r\n    \"movieId\": 23\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/rentals",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/rentals",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/rentals/14",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"rentals",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Return",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 3,\r\n    \"movieId\": 23\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/returns",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"returns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"aisha\",\r\n  \"email\": \"aisha@gmail.com\",\r\n  \"password\": \"12345\",\r\n  \"isAdmin\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMwIiwiSXNBZG1pbiI6ZmFsc2UsIm5iZiI6MTczODA3OTU2NCwiZXhwIjoxNzM4MDgzMTY0LCJpYXQiOjE3MzgwNzk1NjR9.rS3LPBY6I3hXuEfPCvu6Q0b1U1axu5mWvj33-zrFwY8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"aisha@gmail.com\",\r\n  \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7176/api/auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMxIiwiSXNBZG1pbiI6dHJ1ZSwibmJmIjoxNzM4MDc5ODc0LCJleHAiOjE3MzgwODM0NzQsImlhdCI6MTczODA3OTg3NH0.U0_so-tSLRReIVbo5lbd2HTfPY9nlLLg_rtZae4yDKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7176/api/me",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7176",
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

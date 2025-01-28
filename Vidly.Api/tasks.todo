@@ -1,17 +1,4 @@
-﻿TODO: validation of reuquired fields issue 
-TODO: in not found customer the original returns problem detail why not minimal?
-
- 
-
-
-
-dotnet ef dbcontext optimize --output-dir Data/EntityModel
+﻿dotnet ef dbcontext optimize --output-dir Data/EntityModel
 
 
 https://localhost:7176/swagger/index.html
-
-
-
-
-
-
