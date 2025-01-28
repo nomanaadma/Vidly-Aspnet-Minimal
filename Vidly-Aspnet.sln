@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidly.Contracts", "Vidly.Contracts\Vidly.Contracts.csproj", "{59DF4B3B-CE33-4DA9-8832-01A04428D6F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidly.Application", "Vidly.Application\Vidly.Application.csproj", "{6290C0D6-A293-4EFC-B86B-0E92CC3F2944}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vidly.Api", "Vidly.Api\Vidly.Api.csproj", "{F15C8E81-EFCC-4BD6-BFCE-9C4CD3E6E426}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59DF4B3B-CE33-4DA9-8832-01A04428D6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DF4B3B-CE33-4DA9-8832-01A04428D6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DF4B3B-CE33-4DA9-8832-01A04428D6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DF4B3B-CE33-4DA9-8832-01A04428D6F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6290C0D6-A293-4EFC-B86B-0E92CC3F2944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6290C0D6-A293-4EFC-B86B-0E92CC3F2944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6290C0D6-A293-4EFC-B86B-0E92CC3F2944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6290C0D6-A293-4EFC-B86B-0E92CC3F2944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15C8E81-EFCC-4BD6-BFCE-9C4CD3E6E426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15C8E81-EFCC-4BD6-BFCE-9C4CD3E6E426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15C8E81-EFCC-4BD6-BFCE-9C4CD3E6E426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15C8E81-EFCC-4BD6-BFCE-9C4CD3E6E426}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
