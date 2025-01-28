@@ -18,15 +18,13 @@ builder.Host.UseSerilog((ctx, cf) =>
 	cf.WriteTo.Console();
 });
 
-// builder.Services.AddControllers();
-
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddProblemDetails();
-// builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var config = builder.Configuration;
 
@@ -117,12 +115,11 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// app.UseExceptionHandler();
-// app.UseStatusCodePages();
+app.UseExceptionHandler();
+app.UseStatusCodePages();
 
 app.UseMiddleware<ValidationMiddleware>();
 
-// app.MapControllers();
 app.UseEndpoints();
 
 var scope = app.Services.CreateScope();
@@ -130,4 +127,3 @@ var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
 await dbInitializer.InitializeAsync();
 
 app.Run();
-
