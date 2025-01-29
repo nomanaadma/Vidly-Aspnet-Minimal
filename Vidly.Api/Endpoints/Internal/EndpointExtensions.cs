@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using Vidly.Api.Helpers;
+﻿using System.Reflection;
 
-namespace Vidly.Api.Endpoints;
+namespace Vidly.Api.Endpoints.Internal;
 
 public static class EndpointExtensions
 {

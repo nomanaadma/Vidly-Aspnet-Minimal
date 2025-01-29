@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vidly.Api.Endpoints.Internal;
 using Vidly.Api.Mappers;
 using Vidly.Application.Repositories;
 using Vidly.Contracts.Requests;

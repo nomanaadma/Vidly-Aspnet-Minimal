@@ -1,4 +1,4 @@
-﻿namespace Vidly.Api.Endpoints;
+﻿namespace Vidly.Api.Endpoints.Internal;
 
 public interface IEndpoints
 {

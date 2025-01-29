@@ -9,6 +9,8 @@ using Vidly.Api.Handlers;
 using Vidly.Api.Middlewares;
 using Vidly.Application;
 using Vidly.Application.Data;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +22,14 @@ builder.Host.UseSerilog((ctx, cf) =>
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen();
+
+builder.Services.AddFastEndpoints();
+builder.Services.SwaggerDocument(config =>
+{
+	config.ShortSchemaNames = true;
+});
 
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -54,43 +62,43 @@ builder.Services.AddAuthentication(o =>
 		ValidateAudience = false, 
 	};
 	
-	t.Events = new JwtBearerEvents
-	{
-		OnChallenge = context =>
-		{
-			context.HandleResponse(); // Prevent the default response handling
-	
-			context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-			context.Response.ContentType = "application/json";
-	
-			var problemDetails = new ProblemDetails
-			{
-				Status = StatusCodes.Status401Unauthorized,
-				Title = "Unauthorized",
-				Detail = "You are not authorized to access this resource.",
-				Instance = context.HttpContext.Request.Path
-			};
-	
-			var jsonResponse = JsonSerializer.Serialize(problemDetails);
-			return context.Response.WriteAsync(jsonResponse);
-		},
-		OnForbidden = context =>
-		{
-			context.Response.StatusCode = StatusCodes.Status403Forbidden;
-			context.Response.ContentType = "application/json";
-		
-			var problemDetails = new ProblemDetails
-			{
-				Status = StatusCodes.Status403Forbidden,
-				Title = "Forbidden",
-				Detail = "You do not have permission to access this resource.",
-				Instance = context.HttpContext.Request.Path
-			};
-		
-			var jsonResponse = JsonSerializer.Serialize(problemDetails);
-			return context.Response.WriteAsync(jsonResponse);
-		}
-	};
+	// t.Events = new JwtBearerEvents
+	// {
+	// 	OnChallenge = context =>
+	// 	{
+	// 		context.HandleResponse(); // Prevent the default response handling
+	//
+	// 		context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+	// 		context.Response.ContentType = "application/json";
+	//
+	// 		var problemDetails = new ProblemDetails
+	// 		{
+	// 			Status = StatusCodes.Status401Unauthorized,
+	// 			Title = "Unauthorized",
+	// 			Detail = "You are not authorized to access this resource.",
+	// 			Instance = context.HttpContext.Request.Path
+	// 		};
+	//
+	// 		var jsonResponse = JsonSerializer.Serialize(problemDetails);
+	// 		return context.Response.WriteAsync(jsonResponse);
+	// 	},
+	// 	OnForbidden = context =>
+	// 	{
+	// 		context.Response.StatusCode = StatusCodes.Status403Forbidden;
+	// 		context.Response.ContentType = "application/json";
+	// 	
+	// 		var problemDetails = new ProblemDetails
+	// 		{
+	// 			Status = StatusCodes.Status403Forbidden,
+	// 			Title = "Forbidden",
+	// 			Detail = "You do not have permission to access this resource.",
+	// 			Instance = context.HttpContext.Request.Path
+	// 		};
+	// 	
+	// 		var jsonResponse = JsonSerializer.Serialize(problemDetails);
+	// 		return context.Response.WriteAsync(jsonResponse);
+	// 	}
+	// };
 	
 });
 
@@ -102,11 +110,11 @@ var app = builder.Build();
 app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.UseSwagger();
-	app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+// 	app.UseSwagger();
+// 	app.UseSwaggerUI();
+// }
 
 app.MapHealthChecks("/_health");
 
@@ -120,7 +128,14 @@ app.UseStatusCodePages();
 
 app.UseMiddleware<ValidationMiddleware>();
 
-app.UseEndpoints();
+app.UseFastEndpoints(c =>
+{
+	c.Endpoints.RoutePrefix = "api";
+});
+
+app.UseSwaggerGen();
+
+// app.UseEndpoints();
 
 var scope = app.Services.CreateScope();
 var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vidly.Api.Endpoints.Internal;
 using Vidly.Api.Mappers;
 using Vidly.Application.Repositories;
 using Vidly.Contracts.Requests;
@@ -13,32 +14,32 @@ public class CustomerEndpoints : IEndpoints
 
 	public static void DefineEndpoints(IEndpointRouteBuilder app)
 	{
-		var group = app.BaseGroup().MapGroup(BaseRoute);
-
-		group.MapPost("/", Create)
-			.Produces<CustomerResponse>(201)
-			.Produces<ValidationProblemDetails>(400)
-			.WithMethodName(Tag);
-
-		group.MapGet("/{id:int}", Get)
-			.Produces<CustomerResponse>(200)
-			.Produces(404)
-			.WithMethodName(Tag);
-
-		group.MapGet("/", GetAll)
-			.Produces<CustomersResponse>(200)
-			.WithMethodName(Tag);
-
-		group.MapPut("/{id:int}", Update)
-			.Produces<CustomerResponse>(200)
-			.Produces<ValidationProblemDetails>(400)
-			.Produces(404)
-			.WithMethodName(Tag);
-
-		group.MapDelete("/{id:int}", Delete)
-			.Produces(204)
-			.Produces(404)
-			.WithMethodName(Tag);
+		// var group = app.BaseGroup().MapGroup(BaseRoute);
+		//
+		// group.MapPost("/", Create)
+		// 	.Produces<CustomerResponse>(201)
+		// 	.Produces<ValidationProblemDetails>(400)
+		// 	.WithMethodName(Tag);
+		//
+		// group.MapGet("/{id:int}", Get)
+		// 	.Produces<CustomerResponse>(200)
+		// 	.Produces(404)
+		// 	.WithMethodName(Tag);
+		//
+		// group.MapGet("/", GetAll)
+		// 	.Produces<CustomersResponse>(200)
+		// 	.WithMethodName(Tag);
+		//
+		// group.MapPut("/{id:int}", Update)
+		// 	.Produces<CustomerResponse>(200)
+		// 	.Produces<ValidationProblemDetails>(400)
+		// 	.Produces(404)
+		// 	.WithMethodName(Tag);
+		//
+		// group.MapDelete("/{id:int}", Delete)
+		// 	.Produces(204)
+		// 	.Produces(404)
+		// 	.WithMethodName(Tag);
 		
 	}
 

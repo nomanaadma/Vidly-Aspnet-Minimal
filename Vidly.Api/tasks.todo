@@ -1,4 +1,11 @@
-﻿dotnet ef dbcontext optimize --output-dir Data/EntityModel
+﻿todo: schema shows full project path
 
+todo: make AllowAnonymous(); globally
+
+todo: bearer token in swagger support in all project
+
+dotnet ef dbcontext optimize --output-dir Data/EntityModel
 
 https://localhost:7176/swagger/index.html
+
+
