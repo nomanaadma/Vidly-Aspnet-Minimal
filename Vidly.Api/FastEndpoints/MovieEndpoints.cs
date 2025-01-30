@@ -6,35 +6,35 @@ using Vidly.Contracts.Responses;
 
 namespace Vidly.Api.FastEndpoints;
 
-public abstract class CustomerEndpoints
+public abstract class MovieEndpoints
 {
-	private static string BaseRoute => "customers";
+	private static string BaseRoute => "movies";
 	
-	public class CreateCustomer(ICustomerRepository customerRepository) 
-		: Endpoint<CustomerRequest, CustomerResponse>
+	public class CreateMovie(IMovieRepository movieRepository) 
+		: Endpoint<MovieRequest, MovieResponse>
 	{
 		public override void Configure()
 		{
 			Post($"{BaseRoute}");
 			AllowAnonymous();
-			
+
 			Description(b => b
 				.ProducesValidationProblem()
 			);
 		}
 	
 		public override async Task HandleAsync(
-			CustomerRequest request,
+			MovieRequest request,
 			CancellationToken token)
 		{
 			
-			var customer = CustomerMapper.MapToCustomer(request);
+			var movie = MovieMapper.MapToMovie(request);
 	
-			customer = await customerRepository.CreateAsync(customer, token);
+			movie = await movieRepository.CreateAsync(movie, token);
 	
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = MovieMapper.MapToResponse(movie);
 			
-			await SendCreatedAtAsync<GetCustomer>(
+			await SendCreatedAtAsync<GetMovie>(
 				new { id = response.Id },
 				response,
 				generateAbsoluteUrl: true,
@@ -45,8 +45,8 @@ public abstract class CustomerEndpoints
 	}
 
 	
-	public class GetCustomer(ICustomerRepository customerRepository) 
-		: EndpointWithoutRequest<CustomerResponse>
+	public class GetMovie(IMovieRepository movieRepository) 
+		: EndpointWithoutRequest<MovieResponse>
 	{
 		public override void Configure()
 		{
@@ -63,15 +63,15 @@ public abstract class CustomerEndpoints
 
 			var id = Route<int>("id");
 			
-			var customer = await customerRepository.GetByIdAsync(id, token);
+			var movie = await movieRepository.GetByIdAsync(id, token);
 	
-			if (customer is null)
+			if (movie is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 			
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = MovieMapper.MapToResponse(movie);
 			
 			await SendOkAsync(response, token);
 	
@@ -79,20 +79,21 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class GetAllCustomer(ICustomerRepository customerRepository) 
-		: EndpointWithoutRequest<CustomersResponse>
+	public class GetAllMovie(IMovieRepository movieRepository) 
+		: EndpointWithoutRequest<MoviesResponse>
 	{
 		public override void Configure()
 		{
 			Get($"{BaseRoute}");
 			AllowAnonymous();
+			
 		}
 	
 		public override async Task HandleAsync(CancellationToken token)
 		{
 			
-			var customers = await customerRepository.GetAllAsync(token);
-			var response = CustomerMapper.MapToListResponse(customers);
+			var movies = await movieRepository.GetAllAsync(token);
+			var response = MovieMapper.MapToListResponse(movies);
 			
 			await SendOkAsync(response, token);
 	
@@ -100,8 +101,8 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class UpdateCustomer(ICustomerRepository customerRepository) 
-		: Endpoint<CustomerRequest, CustomerResponse>
+	public class UpdateMovie(IMovieRepository movieRepository) 
+		: Endpoint<MovieRequest, MovieResponse>
 	{
 		public override void Configure()
 		{
@@ -115,24 +116,24 @@ public abstract class CustomerEndpoints
 		}
 	
 		public override async Task HandleAsync(
-			CustomerRequest request,
+			MovieRequest request,
 			CancellationToken token)
 		{
 			var id = Route<int>("id");
 			
-			var existingCustomer = await customerRepository.GetByIdAsync(id, token);
+			var existingMovie = await movieRepository.GetByIdAsync(id, token);
 
-			if (existingCustomer is null)
+			if (existingMovie is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 
-			var customer = CustomerMapper.MapToCustomerWithId(request, id);
+			var movie = MovieMapper.MapToMovieWithId(request, id);
 
-			customer = await customerRepository.UpdateAsync(customer, token);
+			movie = await movieRepository.UpdateAsync(movie, token);
 
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = MovieMapper.MapToResponse(movie);
 
 			await SendOkAsync(response, token);
 			
@@ -141,7 +142,7 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class DeleteCustomer(ICustomerRepository customerRepository) 
+	public class DeleteMovie(IMovieRepository movieRepository) 
 		: EndpointWithoutRequest
 	{
 		public override void Configure()
@@ -160,15 +161,15 @@ public abstract class CustomerEndpoints
 		{
 			
 			var id = Route<int>("id");
-			var existingCustomer = await customerRepository.GetByIdAsync(id, token);
+			var existingMovie = await movieRepository.GetByIdAsync(id, token);
 
-			if (existingCustomer is null)
+			if (existingMovie is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 
-			await customerRepository.DeleteByIdAsync(existingCustomer, token);
+			await movieRepository.DeleteByIdAsync(existingMovie, token);
 
 			await SendNoContentAsync(token);
 

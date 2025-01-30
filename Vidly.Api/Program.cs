@@ -11,6 +11,7 @@ using Vidly.Application;
 using Vidly.Application.Data;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using ProblemDetails = Microsoft.AspNetCore.Mvc.ProblemDetails;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,48 +63,49 @@ builder.Services.AddAuthentication(o =>
 		ValidateAudience = false, 
 	};
 	
-	// t.Events = new JwtBearerEvents
-	// {
-	// 	OnChallenge = context =>
-	// 	{
-	// 		context.HandleResponse(); // Prevent the default response handling
-	//
-	// 		context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-	// 		context.Response.ContentType = "application/json";
-	//
-	// 		var problemDetails = new ProblemDetails
-	// 		{
-	// 			Status = StatusCodes.Status401Unauthorized,
-	// 			Title = "Unauthorized",
-	// 			Detail = "You are not authorized to access this resource.",
-	// 			Instance = context.HttpContext.Request.Path
-	// 		};
-	//
-	// 		var jsonResponse = JsonSerializer.Serialize(problemDetails);
-	// 		return context.Response.WriteAsync(jsonResponse);
-	// 	},
-	// 	OnForbidden = context =>
-	// 	{
-	// 		context.Response.StatusCode = StatusCodes.Status403Forbidden;
-	// 		context.Response.ContentType = "application/json";
-	// 	
-	// 		var problemDetails = new ProblemDetails
-	// 		{
-	// 			Status = StatusCodes.Status403Forbidden,
-	// 			Title = "Forbidden",
-	// 			Detail = "You do not have permission to access this resource.",
-	// 			Instance = context.HttpContext.Request.Path
-	// 		};
-	// 	
-	// 		var jsonResponse = JsonSerializer.Serialize(problemDetails);
-	// 		return context.Response.WriteAsync(jsonResponse);
-	// 	}
-	// };
+	t.Events = new JwtBearerEvents
+	{
+		OnChallenge = context =>
+		{
+			context.HandleResponse(); // Prevent the default response handling
+	
+			context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+			context.Response.ContentType = "application/json";
+	
+			var problemDetails = new ProblemDetails
+			{
+				Status = StatusCodes.Status401Unauthorized,
+				Title = "Unauthorized",
+				Detail = "You are not authorized to access this resource.",
+				Instance = context.HttpContext.Request.Path
+			};
+	
+			var jsonResponse = JsonSerializer.Serialize(problemDetails);
+			return context.Response.WriteAsync(jsonResponse);
+		},
+		OnForbidden = context =>
+		{
+			context.Response.StatusCode = StatusCodes.Status403Forbidden;
+			context.Response.ContentType = "application/json";
+		
+			var problemDetails = new ProblemDetails
+			{
+				Status = StatusCodes.Status403Forbidden,
+				Title = "Forbidden",
+				Detail = "You do not have permission to access this resource.",
+				Instance = context.HttpContext.Request.Path
+			};
+		
+			var jsonResponse = JsonSerializer.Serialize(problemDetails);
+			return context.Response.WriteAsync(jsonResponse);
+		}
+	};
 	
 });
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("Admin", p => p.RequireClaim("IsAdmin", "true"));
+    .AddPolicy("Admin", p => 
+	    p.RequireClaim("IsAdmin", "true"));
 
 var app = builder.Build();
 
@@ -131,6 +133,11 @@ app.UseMiddleware<ValidationMiddleware>();
 app.UseFastEndpoints(c =>
 {
 	c.Endpoints.RoutePrefix = "api";
+	
+	// c.Endpoints.Configurator = ep =>
+	// {
+	// 	ep.AllowAnonymous();
+	// };
 });
 
 app.UseSwaggerGen();
@@ -142,3 +149,5 @@ var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
 await dbInitializer.InitializeAsync();
 
 app.Run();
+
+

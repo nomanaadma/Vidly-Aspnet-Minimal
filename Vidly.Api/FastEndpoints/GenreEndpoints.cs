@@ -6,35 +6,35 @@ using Vidly.Contracts.Responses;
 
 namespace Vidly.Api.FastEndpoints;
 
-public abstract class CustomerEndpoints
+public abstract class GenreEndpoints
 {
-	private static string BaseRoute => "customers";
+	private static string BaseRoute => "genres";
 	
-	public class CreateCustomer(ICustomerRepository customerRepository) 
-		: Endpoint<CustomerRequest, CustomerResponse>
+	public class CreateGenre(IGenreRepository genreRepository) 
+		: Endpoint<GenreRequest, GenreResponse>
 	{
 		public override void Configure()
 		{
 			Post($"{BaseRoute}");
 			AllowAnonymous();
-			
+
 			Description(b => b
 				.ProducesValidationProblem()
 			);
 		}
 	
 		public override async Task HandleAsync(
-			CustomerRequest request,
+			GenreRequest request,
 			CancellationToken token)
 		{
 			
-			var customer = CustomerMapper.MapToCustomer(request);
+			var genre = GenreMapper.MapToGenre(request);
 	
-			customer = await customerRepository.CreateAsync(customer, token);
+			genre = await genreRepository.CreateAsync(genre, token);
 	
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = GenreMapper.MapToResponse(genre);
 			
-			await SendCreatedAtAsync<GetCustomer>(
+			await SendCreatedAtAsync<GetGenre>(
 				new { id = response.Id },
 				response,
 				generateAbsoluteUrl: true,
@@ -45,8 +45,8 @@ public abstract class CustomerEndpoints
 	}
 
 	
-	public class GetCustomer(ICustomerRepository customerRepository) 
-		: EndpointWithoutRequest<CustomerResponse>
+	public class GetGenre(IGenreRepository genreRepository) 
+		: EndpointWithoutRequest<GenreResponse>
 	{
 		public override void Configure()
 		{
@@ -63,15 +63,15 @@ public abstract class CustomerEndpoints
 
 			var id = Route<int>("id");
 			
-			var customer = await customerRepository.GetByIdAsync(id, token);
+			var genre = await genreRepository.GetByIdAsync(id, token);
 	
-			if (customer is null)
+			if (genre is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 			
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = GenreMapper.MapToResponse(genre);
 			
 			await SendOkAsync(response, token);
 	
@@ -79,20 +79,21 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class GetAllCustomer(ICustomerRepository customerRepository) 
-		: EndpointWithoutRequest<CustomersResponse>
+	public class GetAllGenre(IGenreRepository genreRepository) 
+		: EndpointWithoutRequest<GenresResponse>
 	{
 		public override void Configure()
 		{
 			Get($"{BaseRoute}");
 			AllowAnonymous();
+			
 		}
 	
 		public override async Task HandleAsync(CancellationToken token)
 		{
 			
-			var customers = await customerRepository.GetAllAsync(token);
-			var response = CustomerMapper.MapToListResponse(customers);
+			var genres = await genreRepository.GetAllAsync(token);
+			var response = GenreMapper.MapToListResponse(genres);
 			
 			await SendOkAsync(response, token);
 	
@@ -100,8 +101,8 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class UpdateCustomer(ICustomerRepository customerRepository) 
-		: Endpoint<CustomerRequest, CustomerResponse>
+	public class UpdateGenre(IGenreRepository genreRepository) 
+		: Endpoint<GenreRequest, GenreResponse>
 	{
 		public override void Configure()
 		{
@@ -115,24 +116,24 @@ public abstract class CustomerEndpoints
 		}
 	
 		public override async Task HandleAsync(
-			CustomerRequest request,
+			GenreRequest request,
 			CancellationToken token)
 		{
 			var id = Route<int>("id");
 			
-			var existingCustomer = await customerRepository.GetByIdAsync(id, token);
+			var existingGenre = await genreRepository.GetByIdAsync(id, token);
 
-			if (existingCustomer is null)
+			if (existingGenre is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 
-			var customer = CustomerMapper.MapToCustomerWithId(request, id);
+			var genre = GenreMapper.MapToGenreWithId(request, id);
 
-			customer = await customerRepository.UpdateAsync(customer, token);
+			genre = await genreRepository.UpdateAsync(genre, token);
 
-			var response = CustomerMapper.MapToResponse(customer);
+			var response = GenreMapper.MapToResponse(genre);
 
 			await SendOkAsync(response, token);
 			
@@ -141,7 +142,7 @@ public abstract class CustomerEndpoints
 	}
 	
 	
-	public class DeleteCustomer(ICustomerRepository customerRepository) 
+	public class DeleteGenre(IGenreRepository genreRepository) 
 		: EndpointWithoutRequest
 	{
 		public override void Configure()
@@ -160,15 +161,15 @@ public abstract class CustomerEndpoints
 		{
 			
 			var id = Route<int>("id");
-			var existingCustomer = await customerRepository.GetByIdAsync(id, token);
+			var existingGenre = await genreRepository.GetByIdAsync(id, token);
 
-			if (existingCustomer is null)
+			if (existingGenre is null)
 			{
 				await SendNotFoundAsync(token);
 				return;
 			}
 
-			await customerRepository.DeleteByIdAsync(existingCustomer, token);
+			await genreRepository.DeleteByIdAsync(existingGenre, token);
 
 			await SendNoContentAsync(token);
 

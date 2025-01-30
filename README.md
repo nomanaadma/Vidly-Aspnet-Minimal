@@ -1,6 +1,6 @@
 ﻿# Vidly API
 
-Replica of the [Vidly Node API](https://github.com/nomanaadma/vidly-node) Created in **Asp.Net Core** using Controllers.
+Rewrite of [Vidly Aspnet](https://github.com/nomanaadma/Vidly-Aspnet) in **Asp.Net Core** with **Minimal API** and **FastEndPoint**.
 
 Vidly is a RESTful API service for managing a movie rental system, built with ASP.NET Core. It provides endpoints for managing movies, customers, rentals, and user authentication.
 
@@ -13,7 +13,7 @@ This repository serves as a personal record of my learning journey. It helps me 
 ## Technical Stack
 
 - **Framework**: ASP.NET Core
-- **Architecture**: RESTful API using Controller pattern
+- **Architecture**: RESTful API using Minimal api and FastEndpoints.
 - **Database**: PostgreSQL with Entity Framework Core
 - **Authentication**: JWT (JSON Web Tokens)
 - **Validation**: FluentValidation for request model validation

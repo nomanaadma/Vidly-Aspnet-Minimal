@@ -338,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"My Customer Updated\",\r\n    \"phone\": \"0322269178910\",\r\n    \"isGold\": false\r\n}",
+							"raw": "{\r\n    \"Title\": \"My Movie new updated\",\r\n    \"GenreId\": 262,\r\n    \"NumberInStock\": 10,\r\n    \"DailyRentalRate\": 20\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -346,7 +346,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7176/api/movies/4",
+							"raw": "https://localhost:7176/api/movies/24",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -355,7 +355,7 @@
 							"path": [
 								"api",
 								"movies",
-								"4"
+								"24"
 							]
 						}
 					},

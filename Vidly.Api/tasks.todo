@@ -8,4 +8,4 @@ dotnet ef dbcontext optimize --output-dir Data/EntityModel
 
 https://localhost:7176/swagger/index.html
 
-
+user creating with same email validation
